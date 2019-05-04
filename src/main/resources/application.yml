@@ -1,0 +1,39 @@
+spring:
+  profiles: dev, default
+  data:
+    mongodb:
+      database: gladtask
+      host: localhost
+      password:
+      port: 27017
+      uri: mongodb://localhost/gladtask
+jwt:
+  secret: gladtask_sk
+  expiration: 604800
+
+aws:
+  access_key_id: AKIAIZWEZVMYRYZJ2NHA
+  secret_access_key: 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
+
+s3:
+  bucket: gladtask
+  region: us-east-1
+
+---
+spring:
+  profiles: test
+  data:
+    mongodb:
+      uri: mongodb://glads:glad123@ds031845.mlab.com:31845/gladtask
+
+jwt:
+  secret: gladtask_sk
+  expiration: 604800
+
+aws:
+  access_key_id: AKIAIZWEZVMYRYZJ2NHA
+  secret_access_key: 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
+
+s3:
+  bucket: gladtask
+  region: us-east-1
