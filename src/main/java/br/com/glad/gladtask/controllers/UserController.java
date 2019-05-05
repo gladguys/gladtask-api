@@ -1,6 +1,8 @@
 package br.com.glad.gladtask.controllers;
 
+import br.com.glad.gladtask.entities.Team;
 import br.com.glad.gladtask.entities.User;
+import br.com.glad.gladtask.services.TeamService;
 import br.com.glad.gladtask.services.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,10 +22,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 @RestController
 @RequestMapping("/api/users")
@@ -32,19 +39,33 @@ import javax.servlet.http.HttpServletRequest;
 public class UserController {
 
 	private UserService userService;
+	private TeamService teamService;
 	private PasswordEncoder passwordEncoder;
 
-	public UserController(UserService userService, PasswordEncoder passwordEncoder) {
+	public UserController(UserService userService, TeamService teamService, PasswordEncoder passwordEncoder) {
 		this.userService = userService;
+		this.teamService = teamService;
 		this.passwordEncoder = passwordEncoder;
 	}
 
 	@ApiOperation(value = "Create a new user")
 	@PostMapping
 	@ResponseBody
-	public ResponseEntity<User> create(HttpServletRequest request, @RequestBody User user) {
+	public ResponseEntity<User> create(HttpServletRequest request, @RequestBody ObjectNode json) {
 		try {
-			return ResponseEntity.ok(createOrUpdateUser(user));
+			ObjectMapper jsonObjectMapper = new ObjectMapper();
+			User userFromRequest = jsonObjectMapper.treeToValue(json.get("user"), User.class);
+
+			final User savedUser = createOrUpdateUser(userFromRequest);
+
+			String teamId = json.get("teamId").asText();
+			if (teamId != null) {
+				teamService.findById(teamId).ifPresent(team -> {
+					team.getParticipants().add(savedUser);
+					teamService.createOrUpdate(team);
+				});
+			}
+			return ResponseEntity.ok(savedUser);
 		} catch (Exception e) {
 			return ResponseEntity.badRequest().build();
 		}

@@ -13,7 +13,10 @@ import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Document
+@JsonIgnoreProperties(ignoreUnknown = true)
 public @Data class User {
 	@Id
 	@ApiModelProperty(notes = "The database generated project ID")
