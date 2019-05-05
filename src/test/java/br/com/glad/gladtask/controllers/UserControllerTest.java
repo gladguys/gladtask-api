@@ -60,7 +60,6 @@ public class UserControllerTest {
 		userController = new UserController(userService, passwordEncoder);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 	}
-
 	//@Test
 	//public void create() throws Exception {
 	//	String token = obtainAccessToken("dineresc@gmail.com","123456");
