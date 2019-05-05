@@ -1,5 +1,5 @@
 spring:
-  profiles: dev, default
+  profiles: dev
   data:
     mongodb:
       database: gladtask
@@ -24,7 +24,7 @@ server:
 
 ---
 spring:
-  profiles: test
+  profiles: default, test
   data:
     mongodb:
       uri: mongodb://glads:glad123@ds031845.mlab.com:31845/gladtask
