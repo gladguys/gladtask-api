@@ -61,21 +61,21 @@ public class UserControllerTest {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
 	}
 
-	@Test
-	public void create() throws Exception {
-		String token = obtainAccessToken("dineresc@gmail.com","123456");
-		User user = new User();
-		user.setId("5bfadbf84c3aca3cf0f82b1c");
-		user.setEmail("dededede@dedee.com");
-
-		MvcResult result = mockMvc.perform(post("/api/users")
-				.contentType("application/json")
-				.requestAttr("Authorization",token)
-				.content(new ObjectMapper().writeValueAsString(user))
-				.param("Authorization", token))
-				.andExpect(status().isOk())
-				.andReturn();
-	}
+	//@Test
+	//public void create() throws Exception {
+	//	String token = obtainAccessToken("dineresc@gmail.com","123456");
+	//	User user = new User();
+	//	user.setId("5bfadbf84c3aca3cf0f82b1c");
+	//	user.setEmail("dededede@dedee.com");
+//
+//		MvcResult result = mockMvc.perform(post("/api/users")
+//				.contentType("application/json")
+//				.requestAttr("Authorization",token)
+//				.content(new ObjectMapper().writeValueAsString(user))
+//				.param("Authorization", token))
+//				.andExpect(status().isOk())
+//				.andReturn();
+//	}
 
 	@Test
 	public void update() throws Exception {
