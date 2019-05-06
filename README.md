@@ -2,7 +2,7 @@
 
 ### Get user logged information in the back side?
 
-In any controller's method if you add a paramenter ``HttpServletRequest` it will comes with a lot of fun info from the HTTP REQUEST.
+In  any controller's method if you add a paramenter ``HttpServletRequest` it will comes with a lot of fun info from the HTTP REQUEST.
 for instance, if you want to get user's request information for whatever reason, you know that we, gladtask, controls security via JWT, so in every (or at least almost) request
 from a client the token is sent via **http request's header**, more specifically *Authorization* name variable.
 
