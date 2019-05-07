@@ -63,6 +63,12 @@ public class UserController {
 					team.getParticipants().add(savedUser);
 					teamService.createOrUpdate(team);
 				});
+			} else {
+				Team team = new Team();
+				team.setManager(savedUser);
+				team.setName("Meu time");
+				team.setParticipants(Collections.singletonList(savedUser));
+				teamService.createOrUpdate(team);
 			}
 			return ResponseEntity.ok(savedUser);
 		} catch (Exception e) {
