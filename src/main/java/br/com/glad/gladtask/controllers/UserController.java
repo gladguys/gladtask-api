@@ -58,7 +58,7 @@ public class UserController {
 
 			final User savedUser = createOrUpdateUser(userFromRequest);
 
-			String teamId = json.get("teamId").asText();
+			String teamId = json.get("teamId") != null ? json.get("teamId").asText() : null;
 			if (teamId != null) {
 				teamService.findById(teamId).ifPresent(team -> {
 					team.getParticipants().add(savedUser);
