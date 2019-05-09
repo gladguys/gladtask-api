@@ -149,7 +149,7 @@ public class TaskController {
 	}
 
 	@ApiOperation(value = "Save a time spent of a task")
-	@PostMapping(value = "/save-time-spent/{id}")
+	@PostMapping(value = "/{id}/time-spent")
 	public ResponseEntity<Task> saveTimeSpent(HttpServletRequest request, @PathVariable("id") String id, @RequestBody TimeSpent timeSpent) {
 		Task task = taskService.findById(id);
 		try {
