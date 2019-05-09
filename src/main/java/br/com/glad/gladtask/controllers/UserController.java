@@ -22,9 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,12 +57,18 @@ public class UserController {
 
 			final User savedUser = createOrUpdateUser(userFromRequest);
 
-			String teamId = json.get("teamId").asText();
-			if (teamId != null) {
+			if (json.get("teamId") != null) {
+				String teamId = json.get("teamId").asText();
 				teamService.findById(teamId).ifPresent(team -> {
 					team.getParticipants().add(savedUser);
 					teamService.createOrUpdate(team);
 				});
+			} else {
+				Team team = new Team();
+				team.setManager(savedUser);
+				team.setName("Meu time");
+				team.setParticipants(Collections.singletonList(savedUser));
+				teamService.createOrUpdate(team);
 			}
 			return ResponseEntity.ok(savedUser);
 		} catch (Exception e) {
