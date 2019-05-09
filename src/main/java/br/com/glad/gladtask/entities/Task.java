@@ -77,6 +77,9 @@ public @Data class Task {
 	@ApiModelProperty(notes = "List of all the comments of the task")
 	private List<TaskComment> taskComments = new ArrayList<>();
 
+	@ApiModelProperty(notes = "List of all the time spent values of the task")
+	private List<TimeSpent> timeSpentValues = new ArrayList<>();
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
