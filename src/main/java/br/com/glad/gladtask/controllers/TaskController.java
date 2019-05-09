@@ -3,7 +3,7 @@ package br.com.glad.gladtask.controllers;
 import br.com.glad.gladtask.entities.Task;
 import br.com.glad.gladtask.entities.TaskChange;
 import br.com.glad.gladtask.entities.TaskComment;
-import br.com.glad.gladtask.entities.TaskStatus;
+import br.com.glad.gladtask.entities.TimeSpent;
 import br.com.glad.gladtask.entities.User;
 import br.com.glad.gladtask.entities.enums.StatusEnum;
 import br.com.glad.gladtask.security.jwt.JwtTokenUtil;
@@ -92,6 +92,7 @@ public class TaskController {
 				.stream()
 				.filter(taskChange -> taskChange.getDate() == null)
 				.forEach(taskChange -> taskChange.setDate(now));
+
 		try {
 			task.setLastEdited(new Date());
 			task.setSenderUser(userFromRequest(request));
@@ -138,6 +139,24 @@ public class TaskController {
 				List<TaskComment> taskComments = task.getTaskComments();
 				taskComments.add(taskComment);
 				task.setTaskComments(taskComments);
+				return ResponseEntity.ok(taskService.createOrUpdate(task));
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
+	@ApiOperation(value = "Save a time spent of a task")
+	@PostMapping(value = "/save-time-spent/{id}")
+	public ResponseEntity<Task> saveTimeSpent(HttpServletRequest request, @PathVariable("id") String id, @RequestBody TimeSpent timeSpent) {
+		Task task = taskService.findById(id);
+		try {
+			if (task != null) {
+				List<TimeSpent> taskTimeSpents = task.getTimeSpentValues();
+				taskTimeSpents.add(timeSpent);
+				task.setTimeSpentValues(taskTimeSpents);
 				return ResponseEntity.ok(taskService.createOrUpdate(task));
 			} else {
 				return ResponseEntity.notFound().build();
