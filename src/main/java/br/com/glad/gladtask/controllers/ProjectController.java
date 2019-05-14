@@ -30,7 +30,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @Controller
-@RequestMapping("/api/project")
+@RequestMapping("/api/projects")
 @Api(value = "Project Controller", description = "Perform operations regard gladtask projects")
 public class ProjectController {
 
