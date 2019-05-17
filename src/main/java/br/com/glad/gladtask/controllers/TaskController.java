@@ -270,7 +270,7 @@ public class TaskController {
 	}
 
 	@ApiOperation(value = "Delete a task")
-	@DeleteMapping(value = "/delete/{id}")
+	@DeleteMapping(value = "/{id}")
 	@PreAuthorize("hasAnyRole('ADMIN')")
 	public ResponseEntity<Void> delete(@PathVariable("id") String id) {
 		try {
