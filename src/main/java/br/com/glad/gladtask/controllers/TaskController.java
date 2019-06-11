@@ -76,7 +76,7 @@ public class TaskController {
 			task.setCreatorUser(userFromRequest(request));
 			task.setSenderUser(userFromRequest(request));
 			task.setCreationDate(now);
-			task.setLastEdited(now);
+
 
 			return ResponseEntity.ok(taskService.createOrUpdate(task));
 		} catch (Exception e) {

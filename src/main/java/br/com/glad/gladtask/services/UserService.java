@@ -10,6 +10,7 @@ import java.util.List;
 public interface UserService {
 
 	User findByEmail(String email);
+	List<User> findByTeam(String teamId) throws Exception;
 	User createOrUpdate(User user);
 	User findById(String id);
 	User findByUsername(String username);
