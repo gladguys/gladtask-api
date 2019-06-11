@@ -10,10 +10,10 @@ public enum StatusEnum {
 
 	public static StatusEnum getStatus(String status) {
 		switch (status) {
-			case "Criada": return CRIADA;
-			case "Em espera": return EM_ESPERA;
-			case "Em andamento": return EM_ANDAMENTO;
-			case "Concluída": return CONCLUIDA;
+			case "CRIADA": return CRIADA;
+			case "EM ESPERA": return EM_ESPERA;
+			case "EM ANDAMENTO": return EM_ANDAMENTO;
+			case "CONCLUÍDA": return CONCLUIDA;
 			default: return CRIADA;
 		}
 	}
