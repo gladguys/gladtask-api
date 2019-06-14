@@ -13,7 +13,7 @@ public enum StatusEnum {
 			case "CRIADA": return CRIADA;
 			case "EM ESPERA": return EM_ESPERA;
 			case "EM ANDAMENTO": return EM_ANDAMENTO;
-			case "CONCLUÍDA": return CONCLUIDA;
+			case "CONCLUIDA": return CONCLUIDA;
 			default: return CRIADA;
 		}
 	}
