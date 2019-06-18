@@ -27,7 +27,7 @@ spring:
   profiles: default, test
   data:
     mongodb:
-      uri: mongodb://glads:glad123@ds031845.mlab.com:31845/gladtask
+      uri: mongodb://heroku_gbfzwf14:gpbfaqd0mhkfv5vgsc8qa0dmpa@ds339177.mlab.com:39177/heroku_gbfzwf14
 
 jwt:
   secret: gladtask_sk
