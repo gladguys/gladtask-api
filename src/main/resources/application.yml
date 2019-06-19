@@ -27,7 +27,7 @@ spring:
   profiles:  test, default
   data:
     mongodb:
-      uri: mongodb://gladtask:gladtask@cluster0-shard-00-00-eiykx.mongodb.net:27017,cluster0-shard-00-01-eiykx.mongodb.net:27017,cluster0-shard-00-02-eiykx.mongodb.net:27017/gladtask?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority
+      uri: mongodb://gladtask:gladtask@cluster0-eiykx.mongodb.net/gladtask?retryWrites=true&w=majority
       database: gladtask
 
 
