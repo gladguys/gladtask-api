@@ -19,21 +19,22 @@ import io.swagger.annotations.Api;
 @Api(value = "Email Controller", description = "Perform operations regard email sends")
 public class EmailController {
 
-	@Autowired private JavaMailSender mailSender;
+	//@Autowired private JavaMailSender mailSender;
 
 	@PostMapping(value = "/inviteTeam//{email:.+}")
 	public ResponseEntity<String> sendInviteToTeamEmail(@PathVariable("email") String email, @RequestBody String url) {
-		SimpleMailMessage message = new SimpleMailMessage();
-		message.setSubject("Convite para o Gladtask!");
-		message.setText("Você foi convidado para ser um Glad. Acesse o link para criar uma conta " + url);
-		message.setTo(email);
-		message.setFrom("gladtask@gmail.com");
+		//SimpleMailMessage message = new SimpleMailMessage();
+		//message.setSubject("Convite para o Gladtask!");
+		//message.setText("Você foi convidado para ser um Glad. Acesse o link para criar uma conta " + url);
+		//message.setTo(email);
+		//message.setFrom("gladtask@gmail.com");
 
-		try {
-			mailSender.send(message);
-			return ResponseEntity.ok().build();
-		} catch (Exception e) {
-			return ResponseEntity.badRequest().build();
-		}
+		//try {
+		//	mailSender.send(message);
+		//	return ResponseEntity.ok().build();
+		//} catch (Exception e) {
+		//	return ResponseEntity.badRequest().build();
+		//}
+		return null;
 	}
 }
