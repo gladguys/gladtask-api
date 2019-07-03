@@ -29,8 +29,6 @@ spring:
     mongodb:
       uri: ${URI_MONGO}
       database: gladtask
-
-
 jwt:
   secret: gladtask_sk
   expiration: 604800
