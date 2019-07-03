@@ -1,6 +1,7 @@
 package br.com.glad.gladtask.services.impl;
 
 import br.com.glad.gladtask.entities.User;
+import br.com.glad.gladtask.repositories.TeamRepository;
 import br.com.glad.gladtask.repositories.UserRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,10 +26,13 @@ public class UserServiceImplTest {
 	@Mock
 	UserRepository userRepository;
 
+	@Mock
+	TeamRepository teamRepository;
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		userService = new UserServiceImpl(userRepository);
+		userService = new UserServiceImpl(userRepository, teamRepository);
 	}
 
 	@Test

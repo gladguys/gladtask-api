@@ -125,6 +125,16 @@ public class UserController {
 		}
 	}
 
+	@ApiOperation(value = "Find a users of a team")
+	@GetMapping(value = "/team/{teamId}")
+	public ResponseEntity<List<User>> findByTeam(@PathVariable("teamId") String teamId) {
+		try {
+			return ResponseEntity.ok(this.userService.findByTeam(teamId));
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	@ApiOperation(value = "Find users that has first name or last name like the term")
 	@GetMapping(value = "/any/{term}")
 	public ResponseEntity<List<User>> findByFirstNameLikeOrLastNameLikeAllIgnoreCase(@PathVariable("term") String term) {
