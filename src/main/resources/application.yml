@@ -12,8 +12,8 @@ jwt:
   expiration: 604800
 
 aws:
-  access_key_id: AKIAIZWEZVMYRYZJ2NHA
-  secret_access_key: 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
+  access_key_id: ${AWS_ACCESS_KEY}
+  secret_access_key: ${SECRET_ACCESS_KEY}
 
 s3:
   bucket: gladtask
@@ -24,18 +24,18 @@ server:
 
 ---
 spring:
-  profiles: default, test
+  profiles:  test, default
   data:
     mongodb:
-      uri: mongodb://glads:glad123@ds031845.mlab.com:31845/gladtask
-
+      uri: ${URI_MONGO}
+      database: gladtask
 jwt:
   secret: gladtask_sk
   expiration: 604800
 
 aws:
-  access_key_id: AKIAIZWEZVMYRYZJ2NHA
-  secret_access_key: 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
+  access_key_id: ${AWS_ACCESS_KEY}
+  secret_access_key: ${SECRET_ACCESS_KEY}
 
 s3:
   bucket: gladtask
