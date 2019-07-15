@@ -1,5 +1,5 @@
 spring:
-  profiles: dev
+  profiles: dev, default
   data:
     mongodb:
       database: gladtask
@@ -24,7 +24,7 @@ server:
 
 ---
 spring:
-  profiles:  test, default
+  profiles:  test
   data:
     mongodb:
       uri: ${URI_MONGO}
