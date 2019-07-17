@@ -6,7 +6,7 @@ spring:
       host: localhost
       password:
       port: 27017
-      uri: mongodb://localhost/gladtask
+      uri: mongodb://35.192.40.49/gladtask
 jwt:
   secret: gladtask_sk
   expiration: 604800
